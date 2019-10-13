@@ -1,0 +1,18 @@
+httpc get 'http://httpbin.org/get?course=networking&assignment=1'
+
+
+
+
+httpc get httpbin.org/status/418
+httpc get -v -h xyz:ab-c www.httpbin.org/get?NAME=PazimGoyal
+httpc get -h abc:code -d '{Lab:903}' -v -f file.json httpbin.org/post
+
+httpc post -d {"Name":Pazim,"version":"9","install":"apt","Owner":"spi","kernerl":"4.9"} httpbin.org/post
+httpc post -h Content-Type:application/json -h Keep-Alive:10 -v -f wow.txt httpbin.org/post
+httpc post -d {Lab:903} -v -f wow.txt httpbin.org/post
+httpc get -v -h Content-Type:text/html -h KeepAlive:10 -h Accept-Language:en httpbin.org/redirect/7
+
+httpc post -h Content-Type:application/json --d '{"Assignment": 1}' httpbin.org/post
+
+
+{"Name":Pazim,"version":"9","install":"apt","Owner":"spi","kernerl":"4 9"}

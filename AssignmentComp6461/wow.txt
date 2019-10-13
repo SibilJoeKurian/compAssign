@@ -1,0 +1,7 @@
+{
+"Name":Sibil,
+"version":"9",
+"install":"apt",
+"Owner":"spi",
+"kernerl":"4.9"
+}
