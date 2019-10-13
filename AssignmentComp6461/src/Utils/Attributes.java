@@ -1,9 +1,42 @@
 package Utils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 public class Attributes {
 	public static String host;
 	static String path;
 	static String URL;
+	static boolean containsSaveFlag;
+	static String fileName;
+	/**
+	 * @return the fileName
+	 */
+	public static String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * @param fileName the fileName to set
+	 */
+	public static void setFileName(String fileName) {
+		Attributes.fileName = fileName;
+	}
+
+	/**
+	 * @return the containsSaveFlag
+	 */
+	public static boolean isContainsSaveFlag() {
+		return containsSaveFlag;
+	}
+
+	/**
+	 * @param containsSaveFlag the containsSaveFlag to set
+	 */
+	public static void setContainsSaveFlag(boolean containsSaveFlag) {
+		Attributes.containsSaveFlag = containsSaveFlag;
+	}
 
 	/*
 	 * @return the host
@@ -48,5 +81,13 @@ public class Attributes {
 		path = url.substring((url.indexOf("/")), url.length());
 		System.out.println("Printing host " + host);
 		System.out.println("Printing path " + path);
+	}
+	
+	public static  void writeFile(String response) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		File file = new File(fileName);
+		PrintWriter printWriter = new PrintWriter(file);
+		printWriter.println(response);
+		printWriter.close();
 	}
 }

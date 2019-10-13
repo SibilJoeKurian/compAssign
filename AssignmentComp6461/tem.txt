@@ -1,0 +1,25 @@
+HTTP/1.1 200 OK
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: *
+Content-Type: application/json
+Date: Sun, 13 Oct 2019 17:58:38 GMT
+Referrer-Policy: no-referrer-when-downgrade
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+Content-Length: 212
+Connection: Close
+
+{
+  "args": {
+    "NAME": "PazimGoyal"
+  }, 
+  "headers": {
+    "Host": "httpbin.org", 
+    "Xyz": "ab-c"
+  }, 
+  "origin": "142.118.42.183, 142.118.42.183", 
+  "url": "https://httpbin.org/get?NAME=PazimGoyal"
+}
+

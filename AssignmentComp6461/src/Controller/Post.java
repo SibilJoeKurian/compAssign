@@ -28,10 +28,7 @@ public class Post {
 	static String request;
 	static String splitURL = "";
 	static boolean containsVerboseFlag;
-	static boolean containsSaveFlag;
 	static ArrayList<String> headerList = new ArrayList<String>();
-	static String filePath = "F:\\eclipse\\AssignmentComp6461\\src\\";
-	static String fileName;
 	static String response = "";
 
 	public Post(String[] args) {
@@ -53,9 +50,9 @@ public class Post {
 			else if (arguments[i].equals("-v")) {
 				containsVerboseFlag = true;
 			} else if (arguments[i].equals("-o")) {
-				containsSaveFlag = true;
-				fileName = arguments[++i];
-			} else if (arguments[i].equals("-h")) {
+				Attributes.setContainsSaveFlag(true);
+				Attributes.setFileName(arguments[++i]);
+			}else if (arguments[i].equals("-h")) {
 				headerList.add(arguments[++i]);
 			} else if (arguments[i].equals("-d")) {
 				i = setData(i);
@@ -194,8 +191,8 @@ public class Post {
 				}
 			}
 			System.out.println(response);
-			if (containsSaveFlag)
-				writeFile();
+			if (Attributes.isContainsSaveFlag())
+				Attributes.writeFile(response);
 
 		} finally {
 			request = null;
@@ -205,11 +202,5 @@ public class Post {
 		}
 	}
 
-	private static void writeFile() throws FileNotFoundException {
-		// TODO Auto-generated method stub
-		File file = new File(filePath += fileName);
-		PrintWriter printWriter = new PrintWriter(file);
-		printWriter.println(response);
-		printWriter.close();
-	}
+
 }

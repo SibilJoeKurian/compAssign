@@ -22,12 +22,10 @@ import Utils.Attributes;
 public class Get {
 	String[] arguments;
 	int port = 80;
-	
+
 	String request = null;
 	BufferedWriter write;
 	static boolean containsVerboseFlag;
-	static boolean containsSaveFlag;
-	String filePath = "F:\\eclipse\\AssignmentComp6461\\src\\";
 	static String fileName;
 	static ArrayList<String> headerList = new ArrayList<String>();
 	static String response = "";
@@ -56,15 +54,15 @@ public class Get {
 	private boolean analyzeCommands() {
 		boolean checkCommand = true;
 		for (int i = 2; i < arguments.length; i++) {
-			
+
 			if (arguments[i].equals("-v")) {
 				containsVerboseFlag = true;
 			} else if (arguments[i].equals("-o")) {
-				containsSaveFlag = true;
-				fileName = arguments[++i];
+				Attributes.setContainsSaveFlag(true);
+				Attributes.setFileName(arguments[++i]);
 			} else if (arguments[i].equals("-h")) {
 				headerList.add(arguments[++i]);
-			} else if (arguments[i].equals("-f")||(arguments[i].equals("-d"))) {
+			} else if (arguments[i].equals("-f") || (arguments[i].equals("-d"))) {
 				System.out.println(Help.INVALID);
 				break;
 			} else {
@@ -87,10 +85,7 @@ public class Get {
 			request = "";
 			socket = new Socket(Attributes.getHost(), port);
 			bufferWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
-
 			makeRequest();
-			System.out.println("Printing request");
-			System.out.println(request);
 			bufferWriter.write(request);
 			bufferWriter.flush();
 
@@ -107,8 +102,8 @@ public class Get {
 				}
 			}
 			System.out.println(response);
-			if (containsSaveFlag)
-				writeFile();
+			if (Attributes.isContainsSaveFlag())
+				Attributes.writeFile(response);
 			if (response.contains("302") && redirect < 5) {
 				if (redirect == 5) {
 					System.out.println("Cannot be redirected");
@@ -129,17 +124,8 @@ public class Get {
 		// TODO Auto-generated method stub
 		redirect += 1;
 		System.out.println("Redirecting" + redirect);
-
 		// analyzeURL(splitURL);
 		getRequest();
-	}
-
-	private void writeFile() throws FileNotFoundException {
-		// TODO Auto-generated method stub
-		File file = new File(filePath += fileName);
-		PrintWriter printWriter = new PrintWriter(file);
-		printWriter.println(response);
-		printWriter.close();
 	}
 
 	private void makeRequest() {
