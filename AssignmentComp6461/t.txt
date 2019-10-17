@@ -2,6 +2,7 @@ httpc get 'http://httpbin.org/get?course=networking&assignment=1'
 
 
 
+'(', ')', '{', '}', '[' and ']
 
 httpc get httpbin.org/status/418
 httpc get -v -h xyz:ab-c www.httpbin.org/get?NAME=PazimGoyal -o tem.txt
